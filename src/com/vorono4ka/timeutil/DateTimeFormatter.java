@@ -1,9 +1,11 @@
+package com.vorono4ka.timeutil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class DefaultTimeFormatter implements TimeFormatter {
-    private static final String[] UNIT_NAMES = {"ms", "sec", "min", "hour", "day", "week"};
+public class DateTimeFormatter implements TimeFormatter {
+    private static final String[] UNIT_NAMES = {"ms", "s", "m", "h", "d", "w"};
     private static final List<Function<Float, Integer>> UNIT_ROUNDERS;
 
     static {
@@ -26,12 +28,12 @@ public class DefaultTimeFormatter implements TimeFormatter {
         int roundedTime = UNIT_ROUNDERS.get(unitIndex).apply(time);
         if (zeroForbidden && roundedTime == 0) return null;
 
-        return String.format("%d %s", roundedTime, UNIT_NAMES[unitIndex]);
+        return String.format("%d%s", roundedTime, UNIT_NAMES[unitIndex]);
     }
 
     @Override
     public String formatTime(List<String> units) {
-        return String.join(" ", units);
+        return String.join(":", units);
     }
 
     @Override

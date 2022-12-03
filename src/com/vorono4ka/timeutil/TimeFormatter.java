@@ -1,3 +1,5 @@
+package com.vorono4ka.timeutil;
+
 import java.util.List;
 
 public interface TimeFormatter {
