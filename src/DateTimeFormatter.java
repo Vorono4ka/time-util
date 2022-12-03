@@ -3,12 +3,11 @@ import java.util.List;
 import java.util.function.Function;
 
 public class DateTimeFormatter implements TimeFormatter {
-    private static final String[] UNIT_NAMES;
+    private static final String[] UNIT_NAMES = {"ms", "s", "m", "h", "d", "w"};
     private static final List<Function<Float, Integer>> UNIT_ROUNDERS;
+    public static final boolean ZERO_FORBIDDEN = true;
 
     static {
-        UNIT_NAMES = new String[]{"ms", "s", "m", "h", "d", "w"};
-
         UNIT_ROUNDERS = new ArrayList<>();
         for (int i = 0; i < UNIT_NAMES.length; i++) {
             UNIT_ROUNDERS.add(i, Math::round);
@@ -19,9 +18,14 @@ public class DateTimeFormatter implements TimeFormatter {
     }
 
     @Override
-    public String formatUnit(float time, int unitIndex, boolean allowZero) {
+    public String formatUnit(float time, int unitIndex) {
+        return formatUnit(time, unitIndex, ZERO_FORBIDDEN);
+    }
+
+    @Override
+    public String formatUnit(float time, int unitIndex, boolean zeroForbidden) {
         int roundedTime = UNIT_ROUNDERS.get(unitIndex).apply(time);
-        if (!allowZero && roundedTime == 0) return null;
+        if (zeroForbidden && roundedTime == 0) return null;
 
         return String.format("%d%s", roundedTime, UNIT_NAMES[unitIndex]);
     }

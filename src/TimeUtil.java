@@ -25,14 +25,14 @@ public class TimeUtil {
             float unit = seconds % divider;
             seconds /= divider;
 
-            String unitString = formatter.formatUnit(unit, i, false);
+            String unitString = formatter.formatUnit(unit, i);
             if (unitString == null) continue;
 
             unitsStrings.add(unitString);
         }
 
         if (unitsStrings.size() == 0) {
-            String unitString = formatter.formatUnit(0, 0, true);
+            String unitString = formatter.formatUnit(0, 0, false);
             return formatter.formatTime(List.of(unitString));
         }
 
