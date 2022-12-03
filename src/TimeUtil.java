@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TimeUtil {
-    private static final int[] UNIT_DIVIDERS = new int[]{1, 60, 60, 60, 24, 7};
+    private static final int[] UNIT_DIVIDERS = new int[]{1, 60, 60, 24, 7, 1};
 
     // Formatters
     private static final TimeFormatter DEFAULT_TIME_FORMATTER = new DefaultTimeFormatter();
@@ -13,7 +13,7 @@ public class TimeUtil {
         return timeToString(seconds, DEFAULT_TIME_FORMATTER);
     }
 
-    public static String timeToString(int seconds, TimeFormatter formatter) {
+    public static String timeToString(float seconds, TimeFormatter formatter) {
         if (seconds < 0) {
             throw new RuntimeException("Time cannot be negative.");
         }
@@ -23,7 +23,7 @@ public class TimeUtil {
             int divider = UNIT_DIVIDERS[i];
 
             float unit = seconds % divider;
-            seconds /= divider;
+            seconds = (int) (seconds / divider);
 
             String unitString = formatter.formatUnit(unit, i);
             if (unitString == null) continue;
