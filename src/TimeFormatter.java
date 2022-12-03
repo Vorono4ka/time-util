@@ -6,4 +6,5 @@ public interface TimeFormatter {
     String formatTime(List<String> units);
 
     int getUnitCount();
+    boolean isZeroForbidden(int unitIndex);
 }

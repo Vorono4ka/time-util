@@ -5,7 +5,6 @@ import java.util.function.Function;
 public class DateTimeFormatter implements TimeFormatter {
     private static final String[] UNIT_NAMES = {"ms", "s", "m", "h", "d", "w"};
     private static final List<Function<Float, Integer>> UNIT_ROUNDERS;
-    public static final boolean ZERO_FORBIDDEN = true;
 
     static {
         UNIT_ROUNDERS = new ArrayList<>();
@@ -19,7 +18,7 @@ public class DateTimeFormatter implements TimeFormatter {
 
     @Override
     public String formatUnit(float time, int unitIndex) {
-        return formatUnit(time, unitIndex, ZERO_FORBIDDEN);
+        return formatUnit(time, unitIndex, isZeroForbidden(unitIndex));
     }
 
     @Override
@@ -38,5 +37,10 @@ public class DateTimeFormatter implements TimeFormatter {
     @Override
     public int getUnitCount() {
         return UNIT_NAMES.length;
+    }
+
+    @Override
+    public boolean isZeroForbidden(int unitIndex) {
+        return true;
     }
 }
