@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A utility for formatting time into string.
+ * @author <a href="https://github.com/Vorono4ka/">Vorono4ka</a>
+ */
 public class TimeUtil {
     private static final int[] UNIT_DIVIDERS = new int[]{1, 60, 60, 24, 7, 1};
 
@@ -9,10 +13,24 @@ public class TimeUtil {
     private static final TimeFormatter DEFAULT_TIME_FORMATTER = new DefaultTimeFormatter();
     private static final TimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatter();
 
+    /**
+     * Formats time into string using {@link DefaultTimeFormatter}.
+     *
+     * @param seconds time as seconds
+     * @return time string
+     * @see TimeUtil#timeToString(float, TimeFormatter)
+     */
     public static String timeToString(float seconds) {
         return timeToString(seconds, DEFAULT_TIME_FORMATTER);
     }
 
+    /**
+     * Formats time into string using given {@link TimeFormatter} object.
+     *
+     * @param seconds time as seconds
+     * @param formatter {@link TimeFormatter} object
+     * @return time string
+     */
     public static String timeToString(float seconds, TimeFormatter formatter) {
         if (seconds < 0) {
             throw new RuntimeException("Time cannot be negative.");
