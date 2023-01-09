@@ -46,7 +46,13 @@ public class TimeUtil {
             seconds = (int) (seconds / divider);
 
             String unitString = formatter.formatUnit(unit, i);
-            if (unitString == null) continue;
+            if (unitString == null) {
+                if (i == formatter.getUnitCount() - 1 && seconds != 0) {
+                    unitString = formatter.formatUnit(seconds, i, false);
+                } else {
+                    continue;
+                }
+            }
 
             unitsStrings.add(unitString);
         }

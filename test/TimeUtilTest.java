@@ -29,7 +29,7 @@ public class TimeUtilTest {
         assertEquals("1 hour", TimeUtil.timeToString(anHour));
         assertEquals("1 day", TimeUtil.timeToString(aDay));
         assertEquals("1 week", TimeUtil.timeToString(aWeek));
-        assertEquals("1 day 1 hour 1 min 1 sec", TimeUtil.timeToString(testValue1));
+        assertEquals("1 week 1 day 1 hour 1 min 1 sec", TimeUtil.timeToString(testValue1));
 
         assertEquals("1 hour 1 sec", TimeUtil.timeToString(testValue2));
     }
@@ -43,7 +43,7 @@ public class TimeUtilTest {
         assertEquals("1h", TimeUtil.timeToString(anHour, TimeUtil.getDateTimeFormatter()));
         assertEquals("1d", TimeUtil.timeToString(aDay, TimeUtil.getDateTimeFormatter()));
         assertEquals("1w", TimeUtil.timeToString(aWeek, TimeUtil.getDateTimeFormatter()));
-        assertEquals("1d:1h:1m:1s", TimeUtil.timeToString(testValue1, TimeUtil.getDateTimeFormatter()));
+        assertEquals("1w:1d:1h:1m:1s", TimeUtil.timeToString(testValue1, TimeUtil.getDateTimeFormatter()));
 
         assertEquals("1h:1s", TimeUtil.timeToString(testValue2, TimeUtil.getDateTimeFormatter()));
     }
@@ -63,7 +63,7 @@ public class TimeUtilTest {
         assertEquals("0h:1m:0s", TimeUtil.timeToString(aMinute, myOwnDateFormatter));
         assertEquals("1h:0m:0s", TimeUtil.timeToString(anHour, myOwnDateFormatter));
         assertEquals("1d:0h:0m:0s", TimeUtil.timeToString(aDay, myOwnDateFormatter));
-        assertEquals("1d:1h:1m:1s", TimeUtil.timeToString(testValue1, myOwnDateFormatter));
+        assertEquals("1w:1d:1h:1m:1s", TimeUtil.timeToString(testValue1, myOwnDateFormatter));
 
         assertEquals("1h:0m:1s", TimeUtil.timeToString(testValue2, myOwnDateFormatter));
 
