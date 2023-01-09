@@ -52,7 +52,9 @@ public class TimeUtil {
         }
 
         if (unitsStrings.size() == 0) {
-            String unitString = formatter.formatUnit(0, 0, false);
+            String unitString;
+            if (seconds == 0) unitString = formatter.formatUnit(0, 0, false);
+            else unitString = formatter.formatUnit(seconds, formatter.getUnitCount() - 1, false);
             return formatter.formatTime(List.of(unitString));
         }
 
@@ -60,10 +62,12 @@ public class TimeUtil {
         return formatter.formatTime(unitsStrings);
     }
 
+    @SuppressWarnings("unused")
     public static TimeFormatter getDefaultTimeFormatter() {
         return DEFAULT_TIME_FORMATTER;
     }
 
+    @SuppressWarnings("unused")
     public static TimeFormatter getDateTimeFormatter() {
         return DATE_TIME_FORMATTER;
     }

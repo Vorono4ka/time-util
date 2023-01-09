@@ -10,13 +10,14 @@ Test written with junit:5.8.1
  */
 public class TimeUtilTest {
     // Units as seconds
+    private static final int aWeek = 604800;
     private static final int aDay = 86400;
     private static final int anHour = 3600;
     private static final int aMinute = 60;
     private static final int aSecond = 1;
     private static final float aMillisecond = 0.001f;
 
-    private static final float testValue1 = aDay + anHour + aMinute + aSecond + aMillisecond;
+    private static final float testValue1 = aWeek + aDay + anHour + aMinute + aSecond + aMillisecond;
     private static final int testValue2 = anHour + aSecond;
 
     @Test
@@ -27,6 +28,7 @@ public class TimeUtilTest {
         assertEquals("1 min", TimeUtil.timeToString(aMinute));
         assertEquals("1 hour", TimeUtil.timeToString(anHour));
         assertEquals("1 day", TimeUtil.timeToString(aDay));
+        assertEquals("1 week", TimeUtil.timeToString(aWeek));
         assertEquals("1 day 1 hour 1 min 1 sec", TimeUtil.timeToString(testValue1));
 
         assertEquals("1 hour 1 sec", TimeUtil.timeToString(testValue2));
@@ -40,6 +42,7 @@ public class TimeUtilTest {
         assertEquals("1m", TimeUtil.timeToString(aMinute, TimeUtil.getDateTimeFormatter()));
         assertEquals("1h", TimeUtil.timeToString(anHour, TimeUtil.getDateTimeFormatter()));
         assertEquals("1d", TimeUtil.timeToString(aDay, TimeUtil.getDateTimeFormatter()));
+        assertEquals("1w", TimeUtil.timeToString(aWeek, TimeUtil.getDateTimeFormatter()));
         assertEquals("1d:1h:1m:1s", TimeUtil.timeToString(testValue1, TimeUtil.getDateTimeFormatter()));
 
         assertEquals("1h:1s", TimeUtil.timeToString(testValue2, TimeUtil.getDateTimeFormatter()));
